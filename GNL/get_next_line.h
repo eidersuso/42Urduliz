@@ -6,7 +6,7 @@
 /*   By: esuso-es <esuso-es@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:18:19 by esuso-es          #+#    #+#             */
-/*   Updated: 2022/12/26 18:18:32 by esuso-es         ###   ########.fr       */
+/*   Updated: 2022/12/28 19:28:01 by esuso-es         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *str, int c);
+int		ft_find_jump(char *buff);
+void	ft_read_line(char *static_buff, int fd)
 
 #endif
