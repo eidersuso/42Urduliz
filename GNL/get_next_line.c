@@ -6,48 +6,49 @@
 /*   By: esuso-es <esuso-es@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:19:55 by esuso-es          #+#    #+#             */
-/*   Updated: 2022/12/28 18:30:33 by esuso-es         ###   ########.fr       */
+/*   Updated: 2022/12/28 19:22:20 by esuso-es         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-                                                                                                                                                                                                                                                                                      
-
-char	*get_next_line(int fd)
+void	ft_read_line(char *static_buff, int fd)
 {
 	char		*buff;
-	int			i;
-	size_t		read_line_count;
-	static char	*static_buff;
+	size_t		read_cont; //contador de lo que lee
 
-	i = 0;
 	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	read_line_count = read(fd, buff, BUFFER_SIZE);
-	if (fd <= 0)
-	{
-		return (NULL);
-	}
 	if (!buff)
 	{
 		return (NULL);
 	}
-	while (buff[i] && buff[i] != '\n')  // Identificar la línea hasta salto de linea y la escribe.
+	read_cont = read(fd, buff, BUFFER_SIZE);
+	if (read_cont > 0)
 	{
-		if (!static_buff)
+		static_buff = ft_strjoin(static_buff, buff);
+	}
+	while (ft_find_jump(buff) == 0 && read_cont >= 0)
+	{
+		read_cont = read(fd, buff, BUFFER_SIZE);
+		static_buff = ft_strjoin(static_buff, buff);
+	}
+	free(buff);
+}
+char	*get_next_line(int fd)
+{
+	int			i;
+	static char	*static_buff;
+	
+	if (fd <= 0)
+	{
+		return (NULL);
+	}
+	if (!static_buff)
 		{
 			static_buff = malloc(sizeof(char) * 1);
 			static_buff[0] = '\0';
 		}
-		write(1, &buff[i], 1);
-		i++;
-		if (!buff[i]) // si el BUFFER_SIZE es menor que el tamaño de la línea, hace falta crear una condición para decirle que siga leyendo. Aquí es donde saca la frase entera independientemente del num q le pongamos al BUFFER_SIZE
-		{
-			i = 0;
-			read_line_count = read(fd, buff, BUFFER_SIZE);
-		}
-	}
-	return (buff);
+	ft_read_line(static_buff, fd)
 }
 
 int	main(void)
