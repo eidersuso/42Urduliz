@@ -6,7 +6,7 @@
 /*   By: esuso-es <esuso-es@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:20:50 by esuso-es          #+#    #+#             */
-/*   Updated: 2022/12/28 19:28:06 by esuso-es         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:28:15 by esuso-es         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strjoin(char *s1, char *s2) // une el segundo string al primero y lo de
 		i++;
 	}
 	new_str[i] = '\0';
-	free(s1);
+	//free(s1);
 	//free(s2);
 	return (new_str);
 }
@@ -112,7 +112,7 @@ char	*ft_strdup(const char *s) //duplica la cadena en un nuevo string(malloc)
 	i = 0;
 	while (buff[i] != '\0')
 	{
-		printf("|%c|", buff[i]);
+		//printf("|%c|", buff[i]);
 		if (buff[i] == '\n')
 		{
 			return (1);
@@ -143,6 +143,7 @@ char	*ft_strchr(const char *str, int c) // Devuelve el string desde el caracter 
 	return (NULL);
 }
 
+/*
 int main(void)
 {
 	// char *str1;
@@ -175,3 +176,4 @@ int main(void)
 	// printf("qué devuelve strdup:%s\n", ft_strdup(str4));
 	// printf("qué devuelve strchr:%s\n", ft_strchr(str5, c));
 }
+*/
