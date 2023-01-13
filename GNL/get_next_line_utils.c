@@ -17,6 +17,10 @@ size_t	ft_strlen(const char *str) // longitud str
 	size_t	i;
 
 	i = 0;
+	if (!str)
+	{
+		return (0);
+	}
 	while (str[i])
 	{
 		i++;
@@ -29,6 +33,7 @@ char	*ft_strjoin(char *s1, char *s2) // une el segundo string al primero y lo de
 	size_t	i;
 	size_t	j;
 	char	*new_str;
+	
 
 	new_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (new_str == NULL)
@@ -36,17 +41,16 @@ char	*ft_strjoin(char *s1, char *s2) // une el segundo string al primero y lo de
 	i = 0;
 	while (s1[i])
 	{
-		new_str[i] += s1[i];
+		new_str[i] = s1[i];
 		i++;
 	}
 	j = 0;
 	while (s2[j])
 	{
-		new_str[i] += s2[j];
+		new_str[i + j] = s2[j];
 		j++;
-		i++;
 	}
-	new_str[i] = '\0';
+	new_str[i + j] = '\0';
 	//free(s1);
 	//free(s2);
 	return (new_str);
@@ -112,7 +116,6 @@ char	*ft_strdup(const char *s) //duplica la cadena en un nuevo string(malloc)
 	i = 0;
 	while (buff[i] != '\0')
 	{
-		//printf("|%c|", buff[i]);
 		if (buff[i] == '\n')
 		{
 			return (1);
@@ -122,7 +125,7 @@ char	*ft_strdup(const char *s) //duplica la cadena en un nuevo string(malloc)
 	return (0);
 }
 
-char	*ft_strchr(const char *str, int c) // Devuelve el string desde el caracter seleccionado.
+char	*ft_strchr(char *str, int c, int free_willy) // Devuelve el string desde el caracter seleccionado.
 {
 	int	i;
 
@@ -130,6 +133,10 @@ char	*ft_strchr(const char *str, int c) // Devuelve el string desde el caracter 
 	if (!str)
 	{
 		return (NULL);
+	}
+	if (free_willy == 1 && str)
+	{
+		return (str);
 	}
 	while (str[i])
 	{

@@ -23,8 +23,9 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strchr(const char *str, int c);
+char	*ft_strchr(char *str, int c, int free_willy);
 int		ft_find_jump(char *buff);
-char	*ft_read_line(char *static_buff, int fd);
+char	*ft_read_line(char *static_buff, int fd, int *free_willy);
+char	*ft_read_left(char *static_buff);
 
 #endif
